@@ -34,7 +34,6 @@ public class ProductDal implements IProductDal {
                 product.setProductName(rs.getString(2));
                 products.add(product);
             }
-
             return products;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -45,17 +44,19 @@ public class ProductDal implements IProductDal {
 
     @Override
     public void Add(Product product) {
-        PreparedStatement ps= con.prepareStatement(
-                "update user905 set name=?,password=?,email=?,country=? where id=?");
-        ps.setString(1,e.getName());
-        ps.setString(2,e.getPassword());
-        ps.setString(3,e.getEmail());
-        ps.setString(4,e.getCountry());
-        ps.setInt(5,e.getId());
+        PreparedStatement ps = null;
+        int status = 0;
+        try {
+            ps = connection.prepareStatement(
+                    "INSERT INTO test(productName) values(?)");
+            ps.setString(1,product.getProductName());
 
-        status = ps.executeUpdate();
+            status = ps.executeUpdate();
 
-        con.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     @Override
