@@ -14,6 +14,7 @@ public class gts {
     private JPanel content;
     private JLabel label;
     private JTable productList;
+    private JButton deleteBtn;
 
     ProductManager pp = new ProductManager(new ProductDal());
 
@@ -27,6 +28,13 @@ public class gts {
                 Product p = new Product();
                 p.setProductName("nizo");
                 pp.Add(p);
+                ProductList();
+            }
+        });
+        deleteBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pp.Delete(1);
                 ProductList();
             }
         });

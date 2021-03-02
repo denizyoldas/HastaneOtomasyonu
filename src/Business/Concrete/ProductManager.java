@@ -24,7 +24,7 @@ public class ProductManager implements IProductService {
     }
 
     @Override
-    public void Delete(Product product) {
-        productDal.Delete(product.getId());
+    public void Delete(int id) {
+        productDal.Delete(id);
     }
 }

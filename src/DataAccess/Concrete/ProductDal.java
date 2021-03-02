@@ -56,11 +56,20 @@ public class ProductDal implements IProductDal {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     @Override
     public void Delete(int product) {
+        PreparedStatement ps = null;
+        int status = 0;
+        try {
+            ps = connection.prepareStatement("DELETE FROM test WHERE Id=?");
+            ps.setInt(1,product);
 
+            status = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
